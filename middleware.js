@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const country = request.geo?.country || 'UNKNOWN';
   const ua = request.headers.get('user-agent') || '';
   const isBot = /bot|crawl|preview|facebook|google|whatsapp/i.test(ua);
+  const country = request.geo?.country || 'UNKNOWN';
 
   if (isBot || country !== 'ID') {
     const url = request.nextUrl.clone();
@@ -12,7 +12,9 @@ export function middleware(request) {
   }
 
   if (request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/landingpage', request.url));
+    const url = request.nextUrl.clone();
+    url.pathname = '/landingpage';
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();
