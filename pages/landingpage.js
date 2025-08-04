@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export default function LandingPage() {
   useEffect(() => {
-    window.location.href = "https://sonic188ez.com/register"; // ganti ke LP asli
+    window.location.href = "https://lajusite.vip/"; // ganti ke LP asli
   }, []);
 
   return (
@@ -11,3 +11,4 @@ export default function LandingPage() {
     </div>
   );
 }
+
